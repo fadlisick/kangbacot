@@ -1,14 +1,11 @@
 from telegram import Bot
 from datetime import datetime
-from dotenv import load_dotenv
 import random
 import os
 
-load_dotenv()
-
-TOKEN = os.getenv("TOKEN")  # Ganti key yang bener ya, jangan langsung isi token di sini
+TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
-THREAD_ID = int(os.getenv("THREAD_ID"))
+THREAD_ID = os.getenv("THREAD_ID")  # kalau pakai topik di grup
 
 motivasi_list = [
     "1 tweet hari ini bisa jadi $1,000 nanti. Fokus farming, bukan ngeluh.",
@@ -87,12 +84,12 @@ def kirim_motivasi():
     bot = Bot(token=TOKEN)
     motivasi = random.choice(motivasi_list)
     tanggal = datetime.now().strftime("%Y-%m-%d")
+    message = f"{motivasi}\n\n#AirdropMotivation | {tanggal}"
     
-    bot.send_message(
-        chat_id=CHAT_ID,
-        text=f"{motivasi}\n\n#AirdropMotivation | {tanggal}",
-        message_thread_id=THREAD_ID
-    )
+    if THREAD_ID:
+        bot.send_message(chat_id=CHAT_ID, message_thread_id=int(THREAD_ID), text=message)
+    else:
+        bot.send_message(chat_id=CHAT_ID, text=message)
 
 if __name__ == "__main__":
     kirim_motivasi()

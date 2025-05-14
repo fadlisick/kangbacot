@@ -84,7 +84,7 @@ def kirim_motivasi():
     bot = Bot(token=TOKEN)
     motivasi = random.choice(motivasi_list)
     tanggal = datetime.now().strftime("%Y-%m-%d")
-    message = f"{motivasi}\n\n#AirdropMotivation | {tanggal}"
+    message = f"{motivasi}"
     
     if THREAD_ID:
         bot.send_message(chat_id=CHAT_ID, message_thread_id=int(THREAD_ID), text=message)

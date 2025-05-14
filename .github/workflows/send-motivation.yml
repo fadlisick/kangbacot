@@ -2,7 +2,7 @@ name: Kirim Motivasi Harian
 
 on:
   schedule:
-- cron: "*/5 * * * *" # jam 08:30 WIB
+    - cron: "*/5 * * * *" # jam 08:30 WIB
   workflow_dispatch:  # bisa dijalankan manual juga
 
 jobs:

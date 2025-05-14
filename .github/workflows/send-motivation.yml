@@ -2,7 +2,7 @@ name: Daily Airdrop Motivator
 
 on:
   schedule:
-    - cron: '*/2 * * * *'  # Tiap hari jam 07:00 WIB (00:00 UTC)
+    - cron: '0 2 * * *'  # Tiap hari jam 09:00 WIB (00:00 UTC)
   workflow_dispatch:     # Bisa manual juga
 
 jobs:

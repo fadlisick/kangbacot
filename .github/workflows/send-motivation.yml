@@ -27,6 +27,6 @@ jobs:
       - name: Jalankan script motivasi
         run: python main.py
         
-        print("TOKEN:", TOKEN)
-        print("CHAT_ID:", CHAT_ID)
-        print("THREAD_ID:", THREAD_ID)
+print("TOKEN:", TOKEN)
+print("CHAT_ID:", CHAT_ID)
+print("THREAD_ID:", THREAD_ID)

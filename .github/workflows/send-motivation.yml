@@ -1,29 +1,24 @@
-name: Kirim Motivasi Harian
+name: Send Daily Motivation
 
 on:
   schedule:
-    - cron: "*/2 * * * *" # jam 08:30 WIB
-  workflow_dispatch:  # bisa dijalankan manual juga
+    - cron: "*/2 * * * *"
+  workflow_dispatch:
 
 jobs:
-  kirimMotivasi:
+  send-motivation:
     runs-on: ubuntu-latest
-    env:
-      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-      CHAT_ID: ${{ secrets.CHAT_ID }}
-      THREAD_ID: ${{ secrets.THREAD_ID }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up Python
+      - uses: actions/checkout@v3
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
       - name: Install dependencies
         run: pip install python-telegram-bot
-
-      - name: Jalankan script motivasi
+      - name: Run script
         run: python main.py
-        
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          THREAD_ID: ${{ secrets.THREAD_ID }}

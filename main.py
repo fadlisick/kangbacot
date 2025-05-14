@@ -3,7 +3,7 @@ from datetime import datetime
 import random
 import os
 
-TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 THREAD_ID = os.getenv("THREAD_ID")  # kalau pakai topik di grup
 
@@ -81,7 +81,7 @@ motivasi_list = [
 ]
 
 def kirim_motivasi():
-    bot = Bot(token=TOKEN)
+    bot = Bot(token=BOT_TOKEN)
     motivasi = random.choice(motivasi_list)
     tanggal = datetime.now().strftime("%Y-%m-%d")
     message = f"{motivasi}"

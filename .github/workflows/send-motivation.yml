@@ -1,24 +1,28 @@
-name: Send Daily Motivation
+name: Daily Airdrop Motivator
 
 on:
   schedule:
-    - cron: "*/2 * * * *"
-  workflow_dispatch:
+    - cron: '*/2 * * * *'  # Tiap hari jam 07:00 WIB (00:00 UTC)
+  workflow_dispatch:     # Bisa manual juga
 
 jobs:
-  send-motivation:
+  run-bot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Python
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.x'
+
       - name: Install dependencies
-        run: pip install python-telegram-bot
-      - name: Run script
-        run: python main.py
+        run: pip install -r requirements.txt
+
+      - name: Run bot
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           THREAD_ID: ${{ secrets.THREAD_ID }}
+        run: python main.py
